@@ -64,7 +64,7 @@ public class Factorial {
             if (!(batchesFinishedCounter.incrementAndGet() == getNumWorkers())) {
                 continue;
             }
-            result = Arrays.stream(intermediateResult).reduce(1, Long::sum);
+            result = Arrays.stream(intermediateResult).reduce(1, (a, b) -> a * b);
             synchronized (this) {
                 ready = true;
                 this.notify();
